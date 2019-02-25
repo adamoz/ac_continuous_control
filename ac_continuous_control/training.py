@@ -19,7 +19,7 @@ def ac_training(agent, env, save_path, n_episodes=2000, n_max_steps_per_episode=
     meta = {
         'scores': [],
         'meta_path': os.path.join(save_path, 'meta.pickle'),
-        'model_path': save_path,
+        'model_path': os.path.join(save_path, 'model'),
         'agent': repr(agent)
     }
 
@@ -48,6 +48,8 @@ def ac_training(agent, env, save_path, n_episodes=2000, n_max_steps_per_episode=
         if mean_score >= best_mean_score:
             best_mean_score = mean_score
             agent.save(meta['model_path'])
+            with open(meta['meta_path'], 'wb') as wb:
+                pickle.dump(meta, wb)
 
     with open(meta['meta_path'], 'wb') as wb:
         pickle.dump(meta, wb)
