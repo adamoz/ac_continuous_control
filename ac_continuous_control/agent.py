@@ -34,8 +34,6 @@ class Agent(AgentInterface):
         Params:
             state_size (int): dimension of each state
             action_size (int): dimension of each action
-            seed (int): random seed
-            fc_units (list): List of unit counts in each layer of q-netwokr
             buffer_size (int): Replay buffer size
             batch_size (int): Size of sampled batches from replay buffer
             lr_actor (float): Learning rate
@@ -171,7 +169,7 @@ class Agent(AgentInterface):
 
 
 class OUNoise:
-    """Ornstein-Uhlenbeck process."""
+    """Ornstein-Uhlenbeck process"""
 
     def __init__(self, size, seed, mu=0.0, theta=0.15, sigma=0.15, sigma_min=0.05, sigma_decay=.975):
         """Initialize parameters and noise process."""
